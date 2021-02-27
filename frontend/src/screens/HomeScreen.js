@@ -13,7 +13,7 @@ const Homescreen = () => {
   const { loading, error, products } = productList;
   useEffect(() => {
     dispatch(listProducts()); // firing off our listProducts from our ProductActions
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
