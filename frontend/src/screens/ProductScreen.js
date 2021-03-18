@@ -8,7 +8,7 @@ import {
   ListGroup,
   Card,
   Button,
-  FormControl,
+  Form,
 } from "react-bootstrap";
 import Rating from "../components/Rating";
 import { listProductDetails } from "../actions/productActions";
@@ -16,12 +16,13 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 
 const ProductScreen = ({ history, match }) => {
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState(1);
 
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, product, error } = productDetails;
+
   useEffect(() => {
     dispatch(listProductDetails(match.params.id)); // matching the product id from the url i.e
   }, [dispatch, match]);
@@ -53,7 +54,8 @@ const ProductScreen = ({ history, match }) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <Rating
-                  value={product.rating}
+                  key={product._id}
+                  value={Number(product.rating)}
                   text={`${product.numReviews} reviews`}
                 />
               </ListGroup.Item>
@@ -89,7 +91,7 @@ const ProductScreen = ({ history, match }) => {
                     <Row>
                       <Col>Qty</Col>
                       <Col>
-                        <FormControl
+                        <Form.Control
                           as="select"
                           value={qty}
                           onChange={(e) => setQty(e.target.value)}
@@ -101,7 +103,7 @@ const ProductScreen = ({ history, match }) => {
                               {x + 1}
                             </option>
                           ))}
-                        </FormControl>
+                        </Form.Control>
                       </Col>
                     </Row>
                   </ListGroup.Item>
