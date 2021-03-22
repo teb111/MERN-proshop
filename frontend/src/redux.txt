@@ -1,0 +1,8 @@
+CONSTANTS ==> step 1
+
+REDUCERS ==> step 2
+
+ACTIONS ==> step 3
+
+store.js
+
