@@ -6,3 +6,6 @@ ACTIONS ==> step 3
 
 store.js
 
+if you want to call an action it's useDispatch
+if you want to bring something in from the state we use useSelector
+
