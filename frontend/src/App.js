@@ -8,6 +8,7 @@ import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
 import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Header />
       <main className="py-3">
         <Container>
+          <Route path="/register" component={RegisterScreen} exact />
           <Route path="/login" component={LoginScreen} exact />
           <Route path="/product/:id" component={ProductScreen} exact />
           {/* so we are setting the id to be optional here by adding the question marks because wen we just go to the
