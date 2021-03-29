@@ -9,6 +9,7 @@ import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
       <Header />
       <main className="py-3">
         <Container>
-          <Route path="/register" component={RegisterScreen} exact />
           <Route path="/login" component={LoginScreen} exact />
+          <Route path="/register" component={RegisterScreen} exact />
+          <Route path="/profile" component={ProfileScreen} exact />
           <Route path="/product/:id" component={ProductScreen} exact />
           {/* so we are setting the id to be optional here by adding the question marks because wen we just go to the
           cart it wont have any id except we to it through the productScreen */}

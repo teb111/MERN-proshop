@@ -15,8 +15,14 @@ const Homescreen = () => {
     dispatch(listProducts()); // firing off our listProducts from our ProductActions
   }, [dispatch]);
 
+  const userRegister = useSelector((state) => state.userRegister);
+  const { success } = userRegister;
+
   return (
     <>
+      {success && (
+        <Message variant="success">Account Created Successfully</Message>
+      )}
       <h1>Latest Products</h1>
       {/* check if loading is true from our prductReducer then set a loading image or text or spinner */}
       {/* check if there is an error and display it*/}

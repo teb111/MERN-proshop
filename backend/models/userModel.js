@@ -41,7 +41,7 @@ userSchema.pre("save", async function (next) {
   // this will check if the password field has been modified, if not we do not want to hash the password
   // cause we don't want to hash the password on PUT requests to modify for example the user's name only
   if (!this.isModified("password")) {
-    next;
+    next();
   }
 
   const salt = await bcrypt.genSalt(10);
