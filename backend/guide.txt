@@ -1,0 +1,7 @@
+STEPS FOLLOWED
+
+1. create CONTROLLER
+
+2. create ROUTES
+
+3. Bring it in the SERVER.JS FILE
