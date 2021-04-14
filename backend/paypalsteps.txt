@@ -1,0 +1,8 @@
+step 1: Go to "https://developer.paypal.com/developer/applications/"
+step 2: In the side Navbar, you will see accounts, click on it and create both a business and personal account
+step 3: Go back to my apps and credentials, click on sandbox then create an app with your business account
+step 4: save the client id in the .env file
+step 5: send the client id through the response in the server.js, so when we are ready to make payment we hit the route and fetch the client id
+step 6: go back to orderScreen and include our script from "https://developer.paypal.com/docs/checkout/reference/customize-sdk/"
+step 7: Build the script dynamically using useEffect in our orderScreen
+step 8: download paypal button from npm and did the rest on the orderScreen page as well
