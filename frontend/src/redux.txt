@@ -1,10 +1,16 @@
+CREATE BACKEND CONTROLLER AND ROUTE then
+
 CONSTANTS ==> step 1
 
 REDUCERS ==> step 2
 
+Bring the reducer into store.js
+
 ACTIONS ==> step 3
 
-store.js
+
+
+create the screen then bring the action in and call it
 
 if you want to call an action it's useDispatch
 if you want to bring something in from the state we use useSelector
