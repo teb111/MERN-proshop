@@ -4,7 +4,7 @@ import { Table, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { listUsers } from "../actions/userActions";
+import { listUsers, deleteUser } from "../actions/userActions";
 
 const UserListScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -15,6 +15,9 @@ const UserListScreen = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userDelete = useSelector((state) => state.userDelete);
+  const { success: successDelete } = userDelete;
+
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       // only logged in admin users only should be able to see this page
@@ -23,10 +26,12 @@ const UserListScreen = ({ history }) => {
       // other users should be redirectd to the login
       history.push("/login");
     }
-  }, [dispatch, history]);
+  }, [dispatch, history, successDelete, userInfo]); // also passing in sucessDelete as a dependency here cause i want the listusers to run again once success delete changes
 
-  const deleteHandler = () => {
-    console.log("deleted");
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure")) {
+      dispatch(deleteUser(id));
+    }
   };
   return (
     <>
@@ -56,13 +61,13 @@ const UserListScreen = ({ history }) => {
                 </td>
                 <td>
                   {user.isAdmin ? (
-                    <i classname="fas fa-check" style={{ color: "green" }}></i>
+                    <i className="fas fa-check" style={{ color: "green" }}></i>
                   ) : (
-                    <i classname="fas fa-times" style={{ color: "red" }}></i>
+                    <i className="fas fa-times" style={{ color: "red" }}></i>
                   )}
                 </td>
                 <td>
-                  <LinkContainer to={`/user/${user._id}/edit`}>
+                  <LinkContainer to={`/admin/user/${user._id}/edit`}>
                     <Button variant="light" className="btn-sm">
                       <i className="fas fa-edit"></i>
                     </Button>
