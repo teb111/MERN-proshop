@@ -16,6 +16,8 @@ import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 import UserListScreen from "./screens/UserListScreen";
 import UserEditScreen from "./screens/UserEditScreen";
+import ProductListScreen from "./screens/ProductListScreen";
+import ProductEditScreen from "./screens/ProductEditScreen";
 
 function App() {
   return (
@@ -36,6 +38,16 @@ function App() {
           <Route path="/cart/:id?" component={CartScreen} exact />
           <Route path="/admin/userlist" component={UserListScreen} exact />
           <Route path="/admin/user/:id/edit" component={UserEditScreen} exact />
+          <Route
+            path="/admin/productlist"
+            component={ProductListScreen}
+            exact
+          />
+          <Route
+            path="/admin/product/:id/edit"
+            component={ProductEditScreen}
+            exact
+          />
           <Route path="/" component={HomeScreen} exact />
           {/* So basically what i am saying here is that i am settting the route for the homescreen which is "/"
           so anytime someone goes to that route i want to render the homescreen but by default this will also render out

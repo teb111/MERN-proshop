@@ -5,6 +5,17 @@ import {
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
+  PRODUCT_DELETE_REQUEST,
+  PRODUCT_DELETE_SUCCESS,
+  PRODUCT_DELETE_FAIL,
+  PRODUCT_CREATE_REQUEST,
+  PRODUCT_CREATE_SUCCESS,
+  PRODUCT_CREATE_FAIL,
+  PRODUCT_CREATE_RESET,
+  PRODUCT_UPDATE_REQUEST,
+  PRODUCT_UPDATE_SUCCESS,
+  PRODUCT_UPDATE_FAIL,
+  PRODUCT_UPDATE_RESET,
 } from "../constants/productConstants";
 
 // for all products
@@ -47,6 +58,69 @@ export const productDetailsReducer = (
     // then we are setting our products to the payload{error} gotten back from the ProductAction
     case PRODUCT_DETAILS_FAIL:
       return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+// Delete a single product
+// Admin only
+export const productDeleteReducer = (state = {}, action) => {
+  switch (action.type) {
+    // calling PRODUCT_DELETE_REQUEST and setting loading to true because we are requesting to delete a product
+    case PRODUCT_DELETE_REQUEST:
+      return { loading: true };
+    // calling PRODUCT_DELETE_SUCCESS and setting loading to true because we are requesting to delete a product
+    // then setting success to true because we've sucessfully deleted our product
+    case PRODUCT_DELETE_SUCCESS:
+      return { loading: false, success: true };
+
+    // calling PRODUCT_DELETE_FAIL and setting loading to false because something went wrong and we did not delete our product
+    // then we are setting our products to the payload{error} gotten back from the ProductAction
+    case PRODUCT_DELETE_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+// Create a product
+// Admin only
+export const productCreateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case PRODUCT_CREATE_REQUEST:
+      return { loading: true };
+
+    case PRODUCT_CREATE_SUCCESS:
+      return { loading: false, success: true, product: action.payload };
+
+    case PRODUCT_CREATE_FAIL:
+      return { loading: false, error: action.payload };
+
+    case PRODUCT_CREATE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+// Create a product
+// Admin only
+export const productUpdateReducer = (state = { product: {} }, action) => {
+  switch (action.type) {
+    case PRODUCT_UPDATE_REQUEST:
+      return { loading: true };
+
+    case PRODUCT_UPDATE_SUCCESS:
+      return { loading: false, success: true, product: action.payload };
+
+    case PRODUCT_UPDATE_FAIL:
+      return { loading: false, error: action.payload };
+
+    case PRODUCT_UPDATE_RESET:
+      return {
+        product: {},
+      };
     default:
       return state;
   }

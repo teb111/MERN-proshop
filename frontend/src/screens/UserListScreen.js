@@ -41,7 +41,7 @@ const UserListScreen = ({ history }) => {
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <Table striped hovered bordered responsive className="table-sm">
+        <Table striped hover bordered responsive className="table-sm">
           <thead>
             <tr>
               <th>ID</th>
@@ -73,7 +73,7 @@ const UserListScreen = ({ history }) => {
                     </Button>
                   </LinkContainer>
                   <Button
-                    classname="btn-sm"
+                    className="btn-sm"
                     variant="danger"
                     onClick={() => deleteHandler(user._id)}
                   >
