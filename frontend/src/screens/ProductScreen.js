@@ -48,7 +48,7 @@ const ProductScreen = ({ history, match }) => {
             <Image src={product.image} alt={product.name} fluid></Image>
           </Col>
           <Col md={3}>
-            <ListGroup variant="flush">
+            <ListGroup variant="flush" key={product._id}>
               <ListGroup.Item>
                 <h3>{product.name}</h3>
               </ListGroup.Item>
@@ -67,7 +67,7 @@ const ProductScreen = ({ history, match }) => {
           </Col>
           <Col md={3}>
             <Card>
-              <ListGroup variant="flush">
+              <ListGroup variant="flush" key={product._id}>
                 <ListGroup.Item>
                   <Row>
                     <Col>Price:</Col>
