@@ -16,6 +16,10 @@ import {
   PRODUCT_UPDATE_SUCCESS,
   PRODUCT_UPDATE_FAIL,
   PRODUCT_UPDATE_RESET,
+  PRODUCT_CREATE_REVIEW_REQUEST,
+  PRODUCT_CREATE_REVIEW_SUCCESS,
+  PRODUCT_CREATE_REVIEW_FAIL,
+  PRODUCT_CREATE_REVIEW_RESET,
 } from "../constants/productConstants";
 
 // for all products
@@ -41,14 +45,14 @@ export const productListReducer = (state = { products: [] }, action) => {
 
 // for a single product
 export const productDetailsReducer = (
-  state = { product: { review: [] } },
+  state = { product: { reviews: [] } },
   action
 ) => {
   switch (action.type) {
     // calling PRODUCT_LIST_REQUEST and setting loading to true because we are requesting for the products
     // then we are setting our products to an empty array because we are just making a request
     case PRODUCT_DETAILS_REQUEST:
-      return { loading: true, ...state };
+      return { ...state, loading: true };
     // calling PRODUCT_DETAILS_SUCCESS and setting loading to false because we have sucessfully gotten our products
     // then we are setting our products to the payload{data} gotten back from the ProductAction
     case PRODUCT_DETAILS_SUCCESS:
@@ -121,6 +125,26 @@ export const productUpdateReducer = (state = { product: {} }, action) => {
       return {
         product: {},
       };
+    default:
+      return state;
+  }
+};
+
+// Review a product
+
+export const productReviewCreateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case PRODUCT_CREATE_REVIEW_REQUEST:
+      return { loading: true };
+
+    case PRODUCT_CREATE_REVIEW_SUCCESS:
+      return { loading: false, success: true };
+
+    case PRODUCT_CREATE_REVIEW_FAIL:
+      return { loading: false, error: action.payload };
+
+    case PRODUCT_CREATE_REVIEW_RESET:
+      return {};
     default:
       return state;
   }
