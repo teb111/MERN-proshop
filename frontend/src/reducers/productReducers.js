@@ -30,9 +30,15 @@ export const productListReducer = (state = { products: [] }, action) => {
     case PRODUCT_LIST_REQUEST:
       return { loading: true, products: [] };
     // calling PRODUCT_LIST_SUCCESS and setting loading to false because we have sucessfully gotten our products
-    // then we are setting our products to the payload{data} gotten back from the ProductAction
+    // then we are setting our products, page and pages to the payload{data} gotten back from the ProductAction but attaching them
+    // because of the response we are getting back from the productController
     case PRODUCT_LIST_SUCCESS:
-      return { loading: false, products: action.payload };
+      return {
+        loading: false,
+        products: action.payload.products,
+        page: action.payload.page,
+        pages: action.payload.pages,
+      };
 
     // calling PRODUCT_LIST_FAIL and setting loading to false because something went wrong and we did not get our products
     // then we are setting our products to the payload{error} gotten back from the ProductAction

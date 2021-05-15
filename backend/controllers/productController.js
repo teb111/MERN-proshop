@@ -5,6 +5,9 @@ import Product from "../models/productModel.js";
 // @route GET /api/products
 // @access public
 const getProducts = asyncHandler(async (req, res) => {
+  // i.e i want 2 products per page
+  const pageSize = 3;
+  const page = Number(req.query.pageNumber) || 1;
   // getting the keyword query from the frontend ProductAction and homescreen and also setting it with regex so when we have somewthing like
   // "ipj" i want the search to return something like iphone too
   const keyword = req.query.keyword
@@ -15,9 +18,15 @@ const getProducts = asyncHandler(async (req, res) => {
         },
       }
     : {};
-  const products = await Product.find({ ...keyword });
 
-  res.json(products);
+  const count = await Product.countDocuments({ ...keyword });
+  const products = await Product.find({ ...keyword })
+    // limiting it by the pageSize if the pageSize is 2, it's only going to get 2 products
+    .limit(pageSize)
+    // to get the correct product
+    .skip(pageSize * (page - 1));
+
+  res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });
 
 // @desc fetch single product
