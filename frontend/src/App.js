@@ -50,6 +50,7 @@ function App() {
             exact
           />
           <Route path="/admin/orderlist" component={OrderListScreen} exact />
+          <Route path="/search/:keyword" component={HomeScreen} />
           <Route path="/" component={HomeScreen} exact />
           {/* So basically what i am saying here is that i am settting the route for the homescreen which is "/"
           so anytime someone goes to that route i want to render the homescreen but by default this will also render out

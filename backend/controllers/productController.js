@@ -5,7 +5,17 @@ import Product from "../models/productModel.js";
 // @route GET /api/products
 // @access public
 const getProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({});
+  // getting the keyword query from the frontend ProductAction and homescreen and also setting it with regex so when we have somewthing like
+  // "ipj" i want the search to return something like iphone too
+  const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: "i", // case insensitive
+        },
+      }
+    : {};
+  const products = await Product.find({ ...keyword });
 
   res.json(products);
 });
@@ -63,15 +73,8 @@ const createProduct = asyncHandler(async (req, res) => {
 // @route PUT /api/products/:id
 // @access Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
-  const {
-    name,
-    price,
-    description,
-    image,
-    brand,
-    category,
-    countInStock,
-  } = req.body;
+  const { name, price, description, image, brand, category, countInStock } =
+    req.body;
 
   const product = await Product.findById(req.params.id);
 
