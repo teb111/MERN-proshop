@@ -6,7 +6,7 @@ import Product from "../models/productModel.js";
 // @access public
 const getProducts = asyncHandler(async (req, res) => {
   // i.e i want 2 products per page
-  const pageSize = 3;
+  const pageSize = 10;
   const page = Number(req.query.pageNumber) || 1;
   // getting the keyword query from the frontend ProductAction and homescreen and also setting it with regex so when we have somewthing like
   // "ipj" i want the search to return something like iphone too
@@ -145,6 +145,15 @@ const createProductReview = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc Get top Rated products
+// @route GET /api/products/top
+// @access public
+const getTopProducts = asyncHandler(async (req, res) => {
+  // Getting just 3 product by the rating in ascending order
+  const products = await Product.find({}).sort({ rating: -1 }).limit(3);
+  res.json(products);
+});
+
 export {
   getProducts,
   getProductById,
@@ -152,4 +161,5 @@ export {
   createProduct,
   updateProduct,
   createProductReview,
+  getTopProducts,
 };

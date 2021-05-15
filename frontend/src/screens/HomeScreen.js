@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "react-bootstrap";
+import ProductCarousel from "../components/ProductCarousel";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Product from "../components/Product";
@@ -28,6 +29,7 @@ const Homescreen = ({ match }) => {
       {success && (
         <Message variant="success">Account Created Successfully</Message>
       )}
+      {!keyword && <ProductCarousel />}
       <h1>Latest Products</h1>
       {/* check if loading is true from our prductReducer then set a loading image or text or spinner */}
       {/* check if there is an error and display it*/}

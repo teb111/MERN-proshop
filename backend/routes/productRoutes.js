@@ -7,12 +7,13 @@ import {
   createProduct,
   updateProduct,
   createProductReview,
+  getTopProducts,
 } from "../controllers/productController.js";
 import { admin, protect } from "../middleware/authMiddleware.js";
 
 // once the slash ("/") route is entered we are sending a get request for getproducts
 router.route("/").get(getProducts).post(protect, admin, createProduct);
-
+router.route("/top").get(getTopProducts);
 router
   .route("/:id")
   .get(getProductById)
