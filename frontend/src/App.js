@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
 // importing components
 import { Container } from "react-bootstrap";
 import Header from "./components/Header";
@@ -21,11 +27,16 @@ import ProductEditScreen from "./screens/ProductEditScreen";
 import OrderListScreen from "./screens/OrderListScreen";
 
 function App() {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  console.log(userInfo);
   return (
     <Router>
       <Header />
       <main className="py-3">
-        <Container>
+        {!userInfo && <Redirect to="/login" />}
+        <Switch>
           <Route path="/shipping" component={ShippingScreen} exact />
           <Route path="/payment" component={PaymentScreen} exact />
           <Route path="/placeorder" component={PlaceOrderScreen} exact />
@@ -65,7 +76,7 @@ function App() {
           {/* So basically what i am saying here is that i am settting the route for the homescreen which is "/"
           so anytime someone goes to that route i want to render the homescreen but by default this will also render out
           anything above "/" like "/products/pages" so the "exact" there is to match that specific route alone */}
-        </Container>
+        </Switch>
       </main>
       {/* <Footer /> */}
     </Router>
