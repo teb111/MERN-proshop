@@ -1,11 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 // importing components
 import { Container } from "react-bootstrap";
 import Header from "./components/Header";
@@ -25,6 +19,8 @@ import UserEditScreen from "./screens/UserEditScreen";
 import ProductListScreen from "./screens/ProductListScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import OrderListScreen from "./screens/OrderListScreen";
+
+// components stopped
 
 function App() {
   const userLogin = useSelector((state) => state.userLogin);
