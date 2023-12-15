@@ -38,7 +38,6 @@ const ProductListScreen = ({ history, match }) => {
   const { userInfo } = userLogin;
 
   useEffect(() => {
-    dispatch({ type: PRODUCT_CREATE_RESET });
     if (!userInfo.isAdmin) {
       // only logged in admin users only should be able to see this page
       history.push("/login");

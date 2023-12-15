@@ -6,7 +6,7 @@ import Product from "../models/productModel.js";
 // @access public
 const getProducts = asyncHandler(async (req, res) => {
   // i.e i want 2 products per page
-  const pageSize = 10;
+  const pageSize = 4;
   const page = Number(req.query.pageNumber) || 1;
   // getting the keyword query from the frontend ProductAction and homescreen and also setting it with regex so when we have somewthing like
   // "ipj" i want the search to return something like iphone too
